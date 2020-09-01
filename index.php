@@ -8,6 +8,35 @@
 <body>
     <h1>Isto é um título em HTML</h1>
     <?php
+     // Funções Strings 
+     $frase = "Hoje é segunda-feira";
+     echo "Quantidade de caractéres da frase: " . strlen($frase);
+     echo "<br>Quantidade de Palavras na frase: " . str_word_count($frase);
+     echo "<br> Palavras invertidade: " . strrev($frase);
+     echo "<br>Posição palavra: " . strpos($frase, "dia");
+     echo "<br>Substitui : " . str_replace("segunda", "terça", $frase);
+     echo "<br><br>";
+
+     // Funções Númericas
+    echo "PI: " .pi();
+    echo "<br>Valor mínimo: " . min(0,3,0,4,6,-100);
+    echo "<br>Valor máximo: " . max(0,3,0,4,6,-100);
+    echo "<br>Valor absoluto: " . abs(-100);
+    echo "<br>Raiz quadrada: " . sqrt(64);
+    echo "<br>Arredonda: " . round(64,67);
+    $numero = rand(0, 1000);
+    echo "<br>Numero alatório: " . $numero;
+
+    if ($numero >= 900){
+        echo "<br>Número Maior que 900";
+    }
+    elseif ($numero >= 500){
+        echo "<br>Número Maior que 500";
+    } else {
+        echo "<br>Número Menor que 500";
+    }
+
+     echo "<br><br>";
         $nome = "Michael Trage";
         $cidade = "Três de Maio";
         $salario = 1045.00;
