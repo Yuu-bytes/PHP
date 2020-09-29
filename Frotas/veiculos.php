@@ -25,7 +25,6 @@ include 'conecta.php';
             echo "<td>" . $registro->PlacaVeiculo . "</td>";
             echo "<td>" . $registro->Modelo . "</td>";
             echo "<td>" . $registro->CodigoMarca . "</td>";
-            echo "<br>";
             echo "</tr>";
         }
         ?>

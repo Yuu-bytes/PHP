@@ -19,6 +19,7 @@ include 'conecta.php';
             <th>Nome</th>
             <th>Emdereço</th>
             <th>CEP</th>
+            <th></th>
         </tr>
         <?php
         $consulta = $con->query("select * from fornecedores");
@@ -28,11 +29,17 @@ include 'conecta.php';
             echo "<td>" . $registro->NomeFornecedor . "</td>";
             echo "<td>" . $registro->EnderecoFornecedor . "</td>";
             echo "<td>" . $registro->Cep . "</td>";
-            echo "<br>";
+        ?>
+            <td>
+                <a href="fornecedores_editar.php?op=alt">Alterar</a>
+                <a href="#">Excluir</a>
+            </td>
+        <?php
             echo "</tr>";
         }
         ?>
     </table>
+    <a href="fornecedores_editar.php?op=inc">Incluir</a>
 </body>
 
 </html>

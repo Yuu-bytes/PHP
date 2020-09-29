@@ -23,7 +23,6 @@ include 'conecta.php';
             echo "<tr>";
             echo "<td>" . $registro->CodigoGrupo . "</td>";
             echo "<td>" . $registro->NomeGrupo . "</td>";
-            echo "<br>";
             echo "</tr>";
         }
         ?>

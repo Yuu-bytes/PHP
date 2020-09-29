@@ -21,7 +21,6 @@ include 'conecta.php';
             echo "<tr>";
             echo "<td>" . $registro->CodigoMarca . "</td>";
             echo "<td>" . $registro->NomeMarca . "</td>";
-            echo "<br>";
             echo "</tr>";
         }
         ?>

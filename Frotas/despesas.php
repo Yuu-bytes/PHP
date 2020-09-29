@@ -25,7 +25,6 @@ include 'conecta.php';
             echo "<td>" . $registro->CodigoDespesa . "</td>";
             echo "<td>" . $registro->NomeDespesa . "</td>";
             echo "<td>" . $registro->CodigoGrupo . "</td>";
-            echo "<br>";
             echo "</tr>";
         }
         ?>

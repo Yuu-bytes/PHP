@@ -25,7 +25,6 @@ include 'conecta.php';
             echo "<td>" . $registro->Cep . "</td>";
             echo "<td>" . $registro->Cidade . "</td>";
             echo "<td>" . $registro->UF . "</td>";
-            echo "<br>";
             echo "</tr>";
         }
         ?>
