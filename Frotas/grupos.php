@@ -23,10 +23,17 @@ include 'conecta.php';
             echo "<tr>";
             echo "<td>" . $registro->CodigoGrupo . "</td>";
             echo "<td>" . $registro->NomeGrupo . "</td>";
+            ?>
+            <td>
+                <a href="grupos_editar.php?op=alt">Alterar</a>
+                <a href="#">Excluir</a>
+            </td>
+        <?php
             echo "</tr>";
         }
         ?>
     </table>
+    <a href="grupos_editar.php?op=inc">Incluir</a>
 </body>
 
 </html>

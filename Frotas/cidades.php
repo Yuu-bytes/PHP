@@ -25,10 +25,17 @@ include 'conecta.php';
             echo "<td>" . $registro->Cep . "</td>";
             echo "<td>" . $registro->Cidade . "</td>";
             echo "<td>" . $registro->UF . "</td>";
+        ?>
+            <td>
+                <a href="cidades_editar.php?op=alt">Alterar</a>
+                <a href="#">Excluir</a>
+            </td>
+        <?php
             echo "</tr>";
         }
         ?>
     </table>
+    <a href="cidades_editar.php?op=inc">Incluir</a>
 </body>
 
 </html>

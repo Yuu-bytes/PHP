@@ -25,10 +25,17 @@ include 'conecta.php';
             echo "<td>" . $registro->CodigoDespesa . "</td>";
             echo "<td>" . $registro->NomeDespesa . "</td>";
             echo "<td>" . $registro->CodigoGrupo . "</td>";
+            ?>
+            <td>
+                <a href="despesas_editar.php?op=alt">Alterar</a>
+                <a href="#">Excluir</a>
+            </td>
+        <?php
             echo "</tr>";
         }
         ?>
     </table>
+    <a href="despesas_editar.php?op=inc">Incluir</a>
 </body>
 
 </html>

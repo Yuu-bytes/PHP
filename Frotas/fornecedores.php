@@ -31,7 +31,7 @@ include 'conecta.php';
             echo "<td>" . $registro->Cep . "</td>";
         ?>
             <td>
-                <a href="fornecedores_editar.php?op=alt">Alterar</a>
+                <a href="fornecedores_editar.php?op=alt&id=<?php echo $registro->CodigoFornecedor; ?>">Alterar</a>
                 <a href="#">Excluir</a>
             </td>
         <?php
