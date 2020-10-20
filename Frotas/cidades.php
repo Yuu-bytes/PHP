@@ -27,8 +27,8 @@ include 'conecta.php';
             echo "<td>" . $registro->UF . "</td>";
         ?>
             <td>
-                <a href="cidades_editar.php?op=alt">Alterar</a>
-                <a href="#">Excluir</a>
+                <a href="cidades_editar.php?op=alt&cep=<?php echo $registro->Cep; ?>">Alterar</a>
+                <a href="cidades_excluir.php?cep=<?php echo $registro->Cep; ?>">Excluir</a>
             </td>
         <?php
             echo "</tr>";

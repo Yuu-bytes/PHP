@@ -14,6 +14,7 @@ if (isset($_GET['op'])) {
     }
 }
 
+// verifica se foi postado uma inclusão
 if (isset($_POST['NomeFornecedor']) && $_GET['op'] == 'inc') {
     $incluir = $con->prepare("insert into fornecedores (NomeFornecedor,EnderecoFornecedor,Cep) " .
         "values (?,?,?) ");
@@ -22,6 +23,20 @@ if (isset($_POST['NomeFornecedor']) && $_GET['op'] == 'inc') {
     $incluir->bindParam(3, $_POST['Cep']);
     if (!$incluir->execute()) { // verifica se ocorreu um erro
         print_r($incluir->errorInfo()); // se ocorreu um erro, mostra o erro
+    } else {
+        header("Location: fornecedores.php"); // se não ocorreu erro, vai para a página de listagem
+    }
+}
+
+// verifica se foi postado uma alteração
+if (isset($_POST['NomeFornecedor']) && $_GET['op'] == 'alt') {
+    $alterar = $con->prepare("update fornecedores set NomeFornecedor=?,EnderecoFornecedor=?,Cep=? where CodigoFornecedor=? ");
+    $alterar->bindParam(1, $_POST['NomeFornecedor']);
+    $alterar->bindParam(2, $_POST['EnderecoFornecedor']);
+    $alterar->bindParam(3, $_POST['Cep']);
+    $alterar->bindParam(4, $_GET['id']);
+    if (!$alterar->execute()) { // verifica se ocorreu um erro
+        print_r($alterar->errorInfo()); // se ocorreu um erro, mostra o erro
     } else {
         header("Location: fornecedores.php"); // se não ocorreu erro, vai para a página de listagem
     }

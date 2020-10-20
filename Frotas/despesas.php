@@ -19,12 +19,12 @@ include 'conecta.php';
             <th>Grupo</th>
         </tr>
         <?php
-        $consulta = $con->query("select * from despesas");
+        $consulta = $con->query("select * from despesas d inner join grupos g on (d.CodigoGrupo = g.CodigoGrupo)");
         while ($registro = $consulta->fetch(PDO::FETCH_OBJ)) {
             echo "<tr>";
             echo "<td>" . $registro->CodigoDespesa . "</td>";
             echo "<td>" . $registro->NomeDespesa . "</td>";
-            echo "<td>" . $registro->CodigoGrupo . "</td>";
+            echo "<td>" . $registro->NomeGrupo . "</td>";
             ?>
             <td>
                 <a href="despesas_editar.php?op=alt">Alterar</a>
