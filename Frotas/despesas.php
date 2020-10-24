@@ -12,30 +12,44 @@ include 'conecta.php';
 </head>
 
 <body>
-    <table border="1">
-        <tr>
-            <th>Código</th>
-            <th>Nome</th>
-            <th>Grupo</th>
-        </tr>
-        <?php
-        $consulta = $con->query("select * from despesas d inner join grupos g on (d.CodigoGrupo = g.CodigoGrupo)");
-        while ($registro = $consulta->fetch(PDO::FETCH_OBJ)) {
-            echo "<tr>";
-            echo "<td>" . $registro->CodigoDespesa . "</td>";
-            echo "<td>" . $registro->NomeDespesa . "</td>";
-            echo "<td>" . $registro->NomeGrupo . "</td>";
+    <div style="width: 80%; margin: 0 auto; padding: 10px;">
+        <form name="frm" method="post">
+            Nome a Pesquisar <input type="text" name="PESQUISA" />
+            <input type="submit" value="Pesquisar" />
+        </form><br>
+        <table border="1" class="table table-striped table-hover">
+            <tr class="thead-dark">
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Grupo</th>
+                <th></th>
+            </tr>
+            <?php
+            $palavra_pesquisar = "";
+            if (isset($_POST['PESQUISA'])) {
+                $palavra_pesquisar = $_POST['PESQUISA'];
+            }
+            $consulta = $con->query("select * from despesas d inner join grupos g on (d.CodigoGrupo = g.CodigoGrupo) where NomeDespesa like '%$palavra_pesquisar%'");
+            while ($registro = $consulta->fetch(PDO::FETCH_OBJ)) {
+                echo "<tr>";
+                echo "<td>" . $registro->CodigoDespesa . "</td>";
+                echo "<td>" . $registro->NomeDespesa . "</td>";
+                echo "<td>" . $registro->NomeGrupo . "</td>";
             ?>
-            <td>
-                <a href="despesas_editar.php?op=alt">Alterar</a>
-                <a href="#">Excluir</a>
-            </td>
-        <?php
-            echo "</tr>";
-        }
-        ?>
-    </table>
-    <a href="despesas_editar.php?op=inc">Incluir</a>
+                <td>
+                    <a href="despesas_editar.php?op=alt&id=<?php echo $registro->CodigoDespesa; ?>"><i class="material-icons" style="color: blue;">edit</i></a>
+                    <a href="despesas_excluir.php?id=<?php echo $registro->CodigoDespesa; ?>"><span class="material-icons" style="color: red;">delete</span></a>
+                </td>
+            <?php
+                echo "</tr>";
+            }
+            ?>
+        </table>
+        <a href="despesas_editar.php?op=inc" class="btn btn-success">Incluir</a>
+    </div>
+    <?php
+    include 'estilos.html';
+    ?>
 </body>
 
 </html>

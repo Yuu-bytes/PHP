@@ -1,5 +1,6 @@
 <?php
 include 'conecta.php';
+include 'funcoes.php';
 
 $NomeFornecedor = "";
 $EnderecoFornecedor = "";
@@ -66,6 +67,7 @@ if ($_GET['op'] == 'alt') {
 </head>
 
 <body>
+    <center>
     <h1><?php echo $titulo; ?></h1>
 
     <form name="form" method="POST">
@@ -80,7 +82,14 @@ if ($_GET['op'] == 'alt') {
             </tr>
             <tr>
                 <td>CEP</td>
-                <td><input type="text" size="10" name="Cep" value="<?php echo $Cep; ?>" /></td>
+                <td>
+                    <?php 
+                        if ($_GET['op'] == 'inc') 
+                            CriaCombo("cidades", "Cidade", "Cep", "");
+                        else
+                            CriaCombo("cidades", "Cidade", "Cep", $Cep);
+                    ?>
+            </td>
             </tr>
             <tr>
                 <td></td>
@@ -88,6 +97,7 @@ if ($_GET['op'] == 'alt') {
             </tr>
         </table>
     </form>
+    </center>
 </body>
 
 </html>
