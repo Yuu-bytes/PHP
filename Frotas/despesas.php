@@ -8,7 +8,7 @@ include 'conecta.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Despesas</title>
 </head>
 
 <body>
@@ -38,7 +38,7 @@ include 'conecta.php';
             ?>
                 <td>
                     <a href="despesas_editar.php?op=alt&id=<?php echo $registro->CodigoDespesa; ?>"><i class="material-icons" style="color: blue;">edit</i></a>
-                    <a href="despesas_excluir.php?id=<?php echo $registro->CodigoDespesa; ?>"><span class="material-icons" style="color: red;">delete</span></a>
+                    <a href="javascript: confirma('despesas_excluir.php?id=<?php echo $registro->CodigoDespesa ?>','<?php echo $registro->NomeDespesa ?>')"><i class="material-icons" style="color:red">delete</i></a>
                 </td>
             <?php
                 echo "</tr>";
@@ -48,6 +48,7 @@ include 'conecta.php';
         <a href="despesas_editar.php?op=inc" class="btn btn-success">Incluir</a>
     </div>
     <?php
+    include 'janela.html';
     include 'estilos.html';
     ?>
 </body>

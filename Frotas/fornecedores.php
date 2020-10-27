@@ -1,7 +1,12 @@
-<?php
-include 'conecta.php';
-?>
+<?php 
 
+    session_start();
+    if (!isset($_SESSION['NOME_USUARIO'])){
+        header("Location: login.php");
+    }
+    include 'conecta.php';
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,16 +14,17 @@ include 'conecta.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fornecedores</title>
 </head>
 
 <body>
     <div style="width: 80%; margin: 0 auto; padding: 10px;">
+    <h3>Bem-Vindo <?php echo $_SESSION['NOME_USUARIO']; ?></h3>
     <form name="frm" method="post">
         Nome a Pesquisar <input type="text" name="PESQUISA"/>
         <input type="submit" value="Pesquisar"/>
     </form><br>
-        <table border="2" class="table table-striped table-hover">
+        <table border="2" class="table table-striped table-hover table-sm">
             <tr class="thead-dark">
                 <th>Código</th>
                 <th>Nome</th>
@@ -42,7 +48,7 @@ include 'conecta.php';
             ?>
                 <td>
                     <a href="fornecedores_editar.php?op=alt&id=<?php echo $registro->CodigoFornecedor; ?>"><i class="material-icons" style="color: blue;">edit</i></a>
-                    <a href="fornecedores_excluir.php?id=<?php echo $registro->CodigoFornecedor; ?>"><span class="material-icons" style="color: red;">delete</span></a>
+                    <a href="javascript: confirma('fornecedores_excluir.php?id=<?php echo $registro->CodigoFornecedor ?>','<?php echo $registro->NomeFornecedor ?>')"><i class="material-icons" style="color:red">delete</i></a>
                 </td>
             <?php
                 echo "</tr>";
@@ -52,6 +58,7 @@ include 'conecta.php';
         <a href="fornecedores_editar.php?op=inc" class="btn btn-success">Incluir</a>
     </div>
     <?php 
+        include 'janela.html';
         include 'estilos.html';
     ?>
 </body>
