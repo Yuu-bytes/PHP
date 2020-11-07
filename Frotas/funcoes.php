@@ -6,6 +6,8 @@
         
         echo '<select name="'.$campoCodigo.'">';
         $consulta = $con->query("select * from $tabela");
+        if ($selecionar == "0")
+            echo '<option value="0">Selecion um registro</option>';
         while ($registro = $consulta->fetch(PDO::FETCH_OBJ)) {
             echo '<option value="'.$registro->$campoCodigo.'" ';
             

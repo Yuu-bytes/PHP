@@ -5,6 +5,7 @@
         header("Location: login.php");
     }
     include 'conecta.php';
+    include 'funcoes.php';
 
 ?>
 
@@ -21,7 +22,9 @@
     <div style="width: 80%; margin: 0 auto; padding: 10px;">
     <h3>Bem-Vindo <?php echo $_SESSION['NOME_USUARIO']; ?></h3>
     <form name="frm" method="post">
+        Codigo <input type="text" name="Codigo"/>
         Nome a Pesquisar <input type="text" name="PESQUISA"/>
+        Cidade <?php CriaCombo("Cidades", "Cidade", "Cep", "0"); ?>
         <input type="submit" value="Pesquisar"/>
     </form><br>
         <table border="2" class="table table-striped table-hover table-sm">
@@ -33,12 +36,21 @@
                 <th></th>
             </tr>
             <?php
+            $filtrosDiversos = "";
             $palavra_pesquisar = "";
+            $cidade_pesquisar = "0";
+            $codigo = "";
             if (isset($_POST['PESQUISA'])){
                 $palavra_pesquisar = $_POST['PESQUISA'];
+                $cidade_pesquisar = $_POST['Cep'];
+                $codigo = $_POST['Codigo'];
+                if ($_POST['Cep'] != "0")
+                    $filtrosDiversos = " and f.Cep = $cidade_pesquisar";
+                if ($_POST['Codigo'] != "") 
+                    $filtrosDiversos = $filtrosDiversos . " and f.CodigoFornecedor = $codigo";
             }
 
-            $consulta = $con->query("select * from fornecedores f inner join cidades c on (f.cep = c.cep) where NomeFornecedor like '%$palavra_pesquisar%'");
+            $consulta = $con->query("select * from fornecedores f inner join cidades c on (f.cep = c.cep) where NomeFornecedor like '%$palavra_pesquisar%' $filtrosDiversos");
             while ($registro = $consulta->fetch(PDO::FETCH_OBJ)) {
                 echo "<tr>";
                 echo "<td>" . $registro->CodigoFornecedor . "</td>";

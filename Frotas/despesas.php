@@ -1,5 +1,6 @@
 <?php
 include 'conecta.php';
+include 'funcoes.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +16,7 @@ include 'conecta.php';
     <div style="width: 80%; margin: 0 auto; padding: 10px;">
         <form name="frm" method="post">
             Nome a Pesquisar <input type="text" name="PESQUISA" />
+            Grupo <?php CriaCombo("grupos", "NomeGrupo", "CodigoGrupo", "0"); ?>
             <input type="submit" value="Pesquisar" />
         </form><br>
         <table border="1" class="table table-striped table-hover">
@@ -25,11 +27,16 @@ include 'conecta.php';
                 <th></th>
             </tr>
             <?php
+            $filtrosDiversos = "";
             $palavra_pesquisar = "";
+            $grupo = "0";
             if (isset($_POST['PESQUISA'])) {
                 $palavra_pesquisar = $_POST['PESQUISA'];
+                $grupo = $_POST['CodigoGrupo'];
+                if ($_POST['CodigoGrupo'] != "0")
+                    $filtrosDiversos = " and d.CodigoGrupo = $grupo";
             }
-            $consulta = $con->query("select * from despesas d inner join grupos g on (d.CodigoGrupo = g.CodigoGrupo) where NomeDespesa like '%$palavra_pesquisar%'");
+            $consulta = $con->query("select * from despesas d inner join grupos g on (d.CodigoGrupo = g.CodigoGrupo) where NomeDespesa like '%$palavra_pesquisar%' $filtrosDiversos");
             while ($registro = $consulta->fetch(PDO::FETCH_OBJ)) {
                 echo "<tr>";
                 echo "<td>" . $registro->CodigoDespesa . "</td>";
